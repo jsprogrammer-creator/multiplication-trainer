@@ -1,0 +1,232 @@
+let generatorBtn = document.querySelector('#generatorBtn')
+let practiseBtn = document.querySelector('#practiseBtn')
+let generateBtn = document.querySelector('#generate')
+let startBtn = document.querySelector('#start')
+let counter = document.querySelector('#counter')
+let numInput = document.querySelector('input')
+let container = document.querySelector('#table-output')
+let primeri = document.querySelector('#primer')
+let theoryBtn = document.querySelector('#theoryBtn')
+let theory = document.querySelector('#theory')
+let theory_p = document.querySelector('#theory p')
+
+practiseBtn.addEventListener('click', function(event) {
+    practiseBtn.classList.add('active')
+    generatorBtn.classList.remove('active')
+    theoryBtn.classList.remove('active')
+    prorisovka()
+})
+
+generatorBtn.addEventListener('click', function(event) {
+    practiseBtn.classList.remove('active')
+    theoryBtn.classList.remove('active')
+    generatorBtn.classList.add('active')
+    prorisovka()
+})
+
+theoryBtn.addEventListener('click', function(event) {
+    practiseBtn.classList.remove('active')
+    theoryBtn.classList.add('active')
+    generatorBtn.classList.remove('active')
+    prorisovka()
+})
+
+function generate(number) {
+    container.innerHTML = ''
+    for (let i = 1; i <= 10; i++) {
+        let table = document.createElement('div')
+        table.textContent = `${number} x ${i} = ${i * number}`
+        container.appendChild(table)
+        container.style.border = '2px solid #776363'
+        container.style.padding = '10px'
+        container.style.animation = 'start 0.9s ease-out forwards;'
+    }
+}
+
+function prorisovka() {
+    if (practiseBtn.classList.contains('active')) {
+        document.querySelector('.generation').style.display = 'none'
+        document.querySelector('#theory').style.display = 'none'
+        document.querySelector('.practise-mode').style.display = 'block'
+        container.innerHTML = ''
+        container.style.borderColor = 'white'
+    } else if (generatorBtn.classList.contains('active')) {
+        document.querySelector('.practise-mode').style.display = 'none'
+        document.querySelector('.generation').style.display = 'block'
+        document.querySelector('#theory').style.display = 'none'
+        primeri.innerHTML = ''
+    } else if (theoryBtn.classList.contains('active')) {
+        document.querySelector('#theory').style.display = 'block'
+        document.querySelector('.generation').style.display = 'none'
+        document.querySelector('.practise-mode').style.display = 'none'
+        container.innerHTML = ''
+        container.style.borderColor = 'white'
+        primeri.innerHTML = ''
+    }
+} 
+
+prorisovka()
+
+generateBtn.addEventListener('click', function(event) {
+    if (numInput.value == '') {alert('Выберите число от 1 до 10')} else {
+    generate(numInput.value) }
+})
+
+let a = 2
+let b = 2
+let counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+let counterMistakes = 3
+let c = 0
+let d = 2
+let e = 2
+let schet = 45
+
+function test() {
+    counter.style.color = '#9c8065'
+    counter.textContent = `Примеров осталось: ${schet}`
+    primeri.innerHTML = ''
+    let mainBox = document.createElement('div')
+    mainBox.style.display = 'flex'
+    mainBox.style.flexDirection = 'column'
+    mainBox.style.alignItems = 'center'
+    mainBox.style.gap = '15px'
+
+    let topRow = document.createElement('div')
+    topRow.style.display = 'flex'
+    topRow.style.alignItems = 'center'
+    topRow.style.gap = '10px'
+
+    let questionText = document.createElement('span')
+    questionText.style.fontSize = '24px'
+    questionText.textContent = `${a} * ${b}   =  `
+    let reshenie = document.createElement('input')
+    reshenie.type = 'number'
+    reshenie.placeholder = 'Произведение'
+    reshenie.style.padding = '5px'
+    reshenie.min = '0'
+    topRow.appendChild(questionText)
+    topRow.appendChild(reshenie)
+
+    let checkBtn = document.createElement('button')
+    checkBtn.textContent = 'Проверить ответ'
+    checkBtn.className = 'generate-btn'
+    checkBtn.style.padding = '10px 20px'
+
+    reshenie.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            checkBtn.click()
+        } 
+    })
+    mainBox.appendChild(topRow)
+    mainBox.appendChild(checkBtn)
+    primeri.appendChild(mainBox)
+    reshenie.focus()
+    checkBtn.addEventListener('click', function(event) {
+        if (+reshenie.value == a * b) {
+            alert('Правильно!')
+            reshenie.focus()
+            schet -= 1
+            counts[a]++
+            b++
+            if (b > 10) {
+                a++
+                b = a
+            }
+            if (a > 10) {
+                alert('Вы прошли всю таблицу')
+                a = 2
+                b = 2
+                counterMistakes = 3
+                schet = 45
+                questionText.textContent = `${a} * ${b}   =  `
+                test()
+            } else {
+                counter.textContent = `Примеров осталось: ${schet}`
+                test()
+            }
+        } else if (reshenie.value == '') {alert('Пожалуйта, введите ответ')} else if (+reshenie.value != a * b && reshenie.value != '') {
+            counterMistakes--
+            if (counterMistakes == 2) {
+                alert('Неверно, осталось 2 попытки')
+            } else if (counterMistakes == 1) {
+                alert('Неверно, последняя попытка')
+            } else {
+                alert('Вы ошиблись слишком много раз. Начнем заново')
+                a = 2; b = 2; counterMistakes = 3; schet = 45
+                questionText.textContent = `${a} * ${b}   =  `
+                test()
+            }
+        }        
+    })
+}
+
+let zad1_propusk = document.querySelector('#zad1-propusk')
+let zad1_ravno = document.querySelector('#otvet-zad1')
+let zad2_propusk = document.querySelector('#zad2-propusk')
+let zad2_ravno = document.querySelector('#zad2-otvet')
+let zad3_otvet = document.querySelector('#otvet-zadachka1')
+let zad4_otvet = document.querySelector('#otvet-zadachka2')
+let checkAnswersBtn = document.querySelector('#checkAnswers')
+
+let theoryTasks = document.querySelector('.theory-tasks')
+
+let mistakeCounter = 0
+
+theoryTasks.addEventListener('input', function(event) {
+    event.target.style.border = '1px solid #c4945c'
+})
+
+function zadachki() {
+    if (+zad1_propusk.value != 5) {
+        zad1_propusk.style.border = '5px solid crimson'
+        mistakeCounter++
+    } else if (+zad1_propusk.value == 5) {
+        zad1_propusk.style.border = '5px solid yellowgreen'
+    }
+
+    if (+zad1_ravno.value == 10) {
+        zad1_ravno.style.border = '5px solid yellowgreen'
+    } else if (+zad1_ravno.value != 10) {
+        zad1_ravno.style.border = '5px solid crimson'
+        mistakeCounter++
+    }
+
+    if (+zad2_propusk.value == 6) {
+        zad2_propusk.style.border = '5px solid yellowgreen'
+    } else {
+        zad2_propusk.style.border = '5px solid crimson'
+        mistakeCounter++
+    }
+
+    if (+zad2_ravno.value == 18) {
+        zad2_ravno.style.border = '5px solid yellowgreen'
+    } else {
+        zad2_ravno.style.border = '5px solid crimson'
+        mistakeCounter++
+    }
+
+    if (+zad3_otvet.value == 24) {
+        zad3_otvet.style.border = '5px solid yellowgreen'
+    } else if (+zad3_otvet.value != 24 ){
+        zad3_otvet.style.border = '5px solid crimson'
+        mistakeCounter++
+    }
+
+    if (+zad4_otvet.value == 18) {
+        zad4_otvet.style.border = '5px solid yellowgreen'
+    } else if (+zad4_otvet.value != 18) {
+        zad4_otvet.style.border = '5px solid crimson'
+        mistakeCounter++
+    }
+}
+
+checkAnswersBtn.addEventListener('click', function(event) {
+    zadachki()
+    if (mistakeCounter == 0) {alert('Все верно!')} else if (mistakeCounter == 1) {alert('У вас 1 ошибка')} else if (mistakeCounter == 6 || mistakeCounter == 5) {alert(`У вас ${mistakeCounter} ошибок`)} else {alert(`У вас ${mistakeCounter} ошибки`)}
+    mistakeCounter = 0
+})
+
+startBtn.addEventListener('click', function(event) {
+    test()
+})

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="title">Таблица умножения</h1>
+    <div class="nav-buttons">
+        <button id="generatorBtn" class="active">Генератор</button>
+        <button id="theoryBtn">Теория</button>
+        <button id="practiseBtn">Практика</button>
+    </div>
+
+    <div class="generation">
+        <p>Выберите число для генерации таблицы умножения: </p> 
+        <input type="number" id="generator_input" min="1" max="10" placeholder="..." >
+        <button id="generate">Сгенерировать</button>
+    </div>
+
+    <div id="theory">
+        <p id="opredelenie" >Умножение — это способ быстро посчитать, сколько получится, если одно число взять несколько раз.</p>
+        <p id="nazvaniya" > Результат умножения называют произведением, а числа, которые умножают, — множителями</p>
+        <p id="multipliicationExample1">2 × 3 = 2 + 2 + 2 = 3 + 3 = 6. 2 и 3 - множители, 6 - произведение.</p>
+        <p id="multipliicationExample2">5 × 4 = 5 + 5 + 5 + 5 = 4 + 4 + 4 + 4 + 4 = 20. 5 и 4 - множители, 20 - произведение.</p>
+        <p id="multipliicationExample3">4 × 4 = 4 + 4 + 4 + 4 = 16. 4 и 4 - множители, 16 - произведение.</p>
+        <h2 id="properties">Свойства</h2>
+        <h3 id="mult0">a × 0 = 0, при этом а - любое число.</h3>
+        <p id="ex1">5 × 0 = 0</p>
+        <p id="ex2">4 × 0 = 0</p>
+        <p id="ex3">89 × 0 = 0</p>
+        <h3 id="mult1">a × 1 = a, при этом а - любое число.</h3>
+        <p id="ex4">4 × 1 = 4</p>
+        <p id="ex5">7 × 1 = 7</p>
+        <p id="ex6">0 × 1 = 0</p>
+        <h2 id="zad-zagolovok">Задачи</h2>
+        <div class="theory-tasks">
+            <h3 id="zadacha">Заполните пропуски:</h3>
+            <div class="theory-row">
+                <p class="zad1">2 × </p> 
+                <input type="number" placeholder="..." id="zad1-propusk" min="0"> 
+                <p class="zad1">= 2 + 2 + 2 + 2 + 2 = </p> 
+                <input type="number" placeholder="..." id="otvet-zad1" min="0">
+            </div>
+
+            <div class="theory-row">
+                <input type="number" placeholder="..." id="zad2-propusk" min="0"> 
+                <p class="zad2"> × 3 = </p> 
+                <p class="zad2" id="23">6 + 6 + 6 = </p> 
+                <input type="number" placeholder="..." id="zad2-otvet" min="0">
+            </div>
+
+            <h3 id="zadachki">Решите задачи</h3>
+
+            <div class="theory-row">
+                <p id="zadachka1">1.У паука 8 лапок. Сколько всего лапок у трёх пауков?</p>
+                <input type="number" id="otvet-zadachka1" placeholder="..." min="0">
+            </div>
+
+            <div class="theory-row">
+                <p id="zadachka2">2.У жука 6 лапок. Сколько всего лапок у трёх жуков?</p>
+                <input type="number" id="otvet-zadachka2" placeholder="..." min="0">
+            </div>
+            <button id="checkAnswers">Проверить ответы</button>
+        </div>
+    </div>
+
+    <div class="practise-mode">
+        <p #proverte>Проверьте свои знания и решите все примеры</p>
+        <button id="start">Начать</button>
+        <h3 id='counter'>Примеров осталось: </h3>
+    </div>
+
+    <div id="table-output">
+
+    </div>
+
+    <div id="primer">
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
