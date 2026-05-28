@@ -241,7 +241,19 @@ function zadachki() {
 
 checkAnswersBtn.addEventListener('click', function(event) {
     zadachki()
-    if (mistakeCounter == 0) {alert('Все верно!')} else if (mistakeCounter == 1) {alert('У вас 1 ошибка')} else if (mistakeCounter == 6 || mistakeCounter == 5) {alert(`У вас ${mistakeCounter} ошибок`)} else {alert(`У вас ${mistakeCounter} ошибки`)}
+    if (mistakeCounter == 0) {
+        rightAnswers.textContent = 'Все верно!'
+        rightAnswers.style.color = 'yellowgreen'
+    } else if (mistakeCounter == 1) {
+        rightAnswers.textContent = 'У вас 1 ошибка'
+        rightAnswers.style.color = `rgb(167, 223, 125)`
+    } else if (mistakeCounter == 6 || mistakeCounter == 5) {
+        rightAnswers.textContent = `У вас ${mistakeCounter} ошибок`
+        rightAnswers.style.color = 'crimson'
+    } else {
+        rightAnswers.textContent = `У вас ${mistakeCounter} ошибки`
+        rightAnswers.style.color = `rgb(212, 212, 40)`
+    }
     mistakeCounter = 0
 })
 
