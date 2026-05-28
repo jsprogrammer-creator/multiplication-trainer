@@ -10,7 +10,6 @@ let theoryBtn = document.querySelector('#theoryBtn')
 let theory = document.querySelector('#theory')
 let theory_p = document.querySelector('#theory p')
 
-
 let rightCheck = document.getElementById('rightCheck')
 
 let rightAnswers = document.getElementById('rightAnswers')
@@ -47,38 +46,6 @@ function generate(number) {
         container.style.animation = 'start 0.9s ease-out forwards;'
     }
 }
-
-function prorisovka() {
-    if (practiseBtn.classList.contains('active')) {
-        document.querySelector('.generation').style.display = 'none'
-        document.querySelector('#theory').style.display = 'none'
-        document.querySelector('.practise-mode').style.display = 'block'
-        container.innerHTML = ''
-        container.style.borderColor = 'white'
-    } else if (generatorBtn.classList.contains('active')) {
-        document.querySelector('.practise-mode').style.display = 'none'
-        document.querySelector('.generation').style.display = 'block'
-        document.querySelector('#theory').style.display = 'none'
-        primeri.innerHTML = ''
-    } else if (theoryBtn.classList.contains('active')) {
-        document.querySelector('#theory').style.display = 'block'
-        document.querySelector('.generation').style.display = 'none'
-        document.querySelector('.practise-mode').style.display = 'none'
-        container.innerHTML = ''
-        container.style.borderColor = 'white'
-        primeri.innerHTML = ''
-    }
-} 
-
-prorisovka()
-
-generateBtn.addEventListener('click', function(event) {
-    if (numInput.value == '') {alert('Выберите число от 1 до 10')} else if (numInput.value.length > 5) {
-        alert('Ошибка: слишком длинное число')
-        numInput.value = ''
-    } else {
-        generate(numInput.value) }
-})
 
 let a = 2
 let b = 2
@@ -152,6 +119,11 @@ function test() {
                 topRow.innerHTML = ''
                 counter.textContent = ''
                 mainBox.innerHTML = ''
+                a = 2
+                b = 2
+                counterMistakes = 3
+                schet = 45
+                startBtn.textContent = 'Начать'
             } else {
                 counter.textContent = `Примеров осталось: ${schet}`
                 test()
@@ -177,7 +149,47 @@ function test() {
             }
         }        
     })
+    if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
+        startBtn.textContent = 'Продолжить'
+    } 
 }
+
+function prorisovka() {
+    if (practiseBtn.classList.contains('active')) {
+        document.querySelector('.generation').style.display = 'none'
+        document.querySelector('#theory').style.display = 'none'
+        document.querySelector('.practise-mode').style.display = 'block'
+        container.innerHTML = ''
+        container.style.borderColor = 'white'
+    } else if (generatorBtn.classList.contains('active')) {
+        document.querySelector('.practise-mode').style.display = 'none'
+        document.querySelector('.generation').style.display = 'block'
+        document.querySelector('#theory').style.display = 'none'
+        primeri.innerHTML = ''
+        rightCheck.textContent = ''
+    } else if (theoryBtn.classList.contains('active')) {
+        document.querySelector('#theory').style.display = 'block'
+        document.querySelector('.generation').style.display = 'none'
+        document.querySelector('.practise-mode').style.display = 'none'
+        container.innerHTML = ''
+        container.style.borderColor = 'white'
+        primeri.innerHTML = ''
+        rightCheck.textContent = ''
+    }
+    if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
+        startBtn.textContent = 'Продолжить'
+    }
+} 
+
+prorisovka()
+
+generateBtn.addEventListener('click', function(event) {
+    if (numInput.value == '') {alert('Выберите число от 1 до 10')} else if (numInput.value.length > 5) {
+        alert('Ошибка: слишком длинное число')
+        numInput.value = ''
+    } else {
+        generate(numInput.value) }
+})
 
 let zad1_propusk = document.querySelector('#zad1-propusk')
 let zad1_ravno = document.querySelector('#otvet-zad1')

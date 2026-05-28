@@ -410,5 +410,6 @@ h1 {
 
     #theory p {
         font-size: 18px;
+        min-width: 25px;
     }
 }
