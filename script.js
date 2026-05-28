@@ -147,8 +147,9 @@ function test() {
                 questionText.textContent = `${a} * ${b}`
                 test()
             }
-        }        
+        }
     })
+
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
     } 
