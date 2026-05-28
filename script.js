@@ -103,7 +103,7 @@ function test() {
 
     let questionText = document.createElement('span')
     questionText.classList.add('questionText')
-    questionText.textContent = `${a} * ${b}         =   `
+    questionText.textContent = `${a} * ${b}`
 
     let reshenie = document.createElement('input')
     reshenie.type = 'number'
