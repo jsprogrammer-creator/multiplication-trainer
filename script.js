@@ -68,8 +68,11 @@ function prorisovka() {
 prorisovka()
 
 generateBtn.addEventListener('click', function(event) {
-    if (numInput.value == '') {alert('Выберите число от 1 до 10')} else {
-    generate(numInput.value) }
+    if (numInput.value == '') {alert('Выберите число от 1 до 10')} else if (numInput.value.length > 5) {
+        alert('Ошибка: слишком длинное число')
+        numInput.value = ''
+    } else {
+        generate(numInput.value) }
 })
 
 let a = 2
@@ -87,23 +90,28 @@ function test() {
     primeri.innerHTML = ''
     let mainBox = document.createElement('div')
     mainBox.style.display = 'flex'
+    mainBox.classList.add('mainBox')
     mainBox.style.flexDirection = 'column'
     mainBox.style.alignItems = 'center'
     mainBox.style.gap = '15px'
 
     let topRow = document.createElement('div')
     topRow.style.display = 'flex'
+    topRow.classList.add('topRow')
     topRow.style.alignItems = 'center'
     topRow.style.gap = '10px'
 
     let questionText = document.createElement('span')
-    questionText.style.fontSize = '24px'
-    questionText.textContent = `${a} * ${b}   =  `
+    questionText.classList.add('questionText')
+    questionText.textContent = `${a} * ${b}         =   `
+
     let reshenie = document.createElement('input')
     reshenie.type = 'number'
+    reshenie.classList.add('reshenie')
     reshenie.placeholder = 'Произведение'
     reshenie.style.padding = '5px'
     reshenie.min = '0'
+    
     topRow.appendChild(questionText)
     topRow.appendChild(reshenie)
 
