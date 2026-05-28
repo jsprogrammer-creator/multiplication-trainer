@@ -332,7 +332,10 @@ h1 {
     animation: start 1.2s ease-out;
 }
 
-
+.rightCheck {
+    font-weight: 600;
+    font-size: 24px;
+}
 
 #theory p {
     font-size: 22px;
@@ -403,8 +406,6 @@ h1 {
     .questionText {
         font-size: 20px;
         min-width: 60px;
-        display: grid;
-
     }
 
     #theory p {

@@ -10,6 +10,11 @@ let theoryBtn = document.querySelector('#theoryBtn')
 let theory = document.querySelector('#theory')
 let theory_p = document.querySelector('#theory p')
 
+
+let rightCheck = document.getElementById('rightCheck')
+
+let rightAnswers = document.getElementById('rightAnswers')
+
 practiseBtn.addEventListener('click', function(event) {
     practiseBtn.classList.add('active')
     generatorBtn.classList.remove('active')
@@ -77,7 +82,6 @@ generateBtn.addEventListener('click', function(event) {
 
 let a = 2
 let b = 2
-let counts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 let counterMistakes = 3
 let c = 0
 let d = 2
@@ -132,37 +136,43 @@ function test() {
     reshenie.focus()
     checkBtn.addEventListener('click', function(event) {
         if (+reshenie.value == a * b) {
-            alert('Правильно!')
+            rightCheck.textContent = 'Правильно!'
+            rightCheck.style.color = 'yellowgreen'
             reshenie.focus()
             schet -= 1
-            counts[a]++
+
             b++
             if (b > 10) {
                 a++
                 b = a
             }
             if (a > 10) {
-                alert('Вы прошли всю таблицу')
-                a = 2
-                b = 2
-                counterMistakes = 3
-                schet = 45
-                questionText.textContent = `${a} * ${b}   =  `
-                test()
+                rightCheck.textContent = 'Вы прошли всю таблицу!'
+                rightCheck.style.color = 'cornflowerblue'
+                topRow.innerHTML = ''
+                counter.textContent = ''
+                mainBox.innerHTML = ''
             } else {
                 counter.textContent = `Примеров осталось: ${schet}`
                 test()
             }
-        } else if (reshenie.value == '') {alert('Пожалуйта, введите ответ')} else if (+reshenie.value != a * b && reshenie.value != '') {
+        } else if (reshenie.value == '') {
+            rightCheck.textContent = 'Пожалуйста, введите ответ'; rightCheck.style.color = 'yellow'
+        } else if (+reshenie.value != a * b && reshenie.value != '') {
             counterMistakes--
             if (counterMistakes == 2) {
-                alert('Неверно, осталось 2 попытки')
+                rightCheck.textContent = 'Неверно, осталось 2 попытки'
+                rightCheck.style.color = 'crimson'
+                reshenie.value = ''
             } else if (counterMistakes == 1) {
-                alert('Неверно, последняя попытка')
+                rightCheck.textContent = 'Неверно, последняя попытка'
+                rightCheck.style.color = 'crimson'
+                reshenie.value = ''
             } else {
-                alert('Вы ошиблись слишком много раз. Начнем заново')
+                rightCheck.textContent = 'Вы ошиблись слишком много раз. Начнем заново'
+                rightCheck.style.color = 'crimson'
                 a = 2; b = 2; counterMistakes = 3; schet = 45
-                questionText.textContent = `${a} * ${b}   =  `
+                questionText.textContent = `${a} * ${b}`
                 test()
             }
         }        
