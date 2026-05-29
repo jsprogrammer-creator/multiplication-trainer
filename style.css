@@ -319,6 +319,10 @@ h1 {
 #theory {
     text-align: center;
     color: #8a7a6a;
+    
+}
+
+#theory input {
     animation: start 0.9s ease-out;
 }
 
@@ -340,6 +344,66 @@ h1 {
 
 #theory p:nth-child(5) {
     animation: start 1.2s ease-out;
+}
+
+#theory p:nth-child(6) {
+    animation: start 1.3s ease-out;
+}
+
+#theory p:nth-child(7) {
+    animation: start 1.4s ease-out;
+}
+
+#theory p:nth-child(8) {
+    animation: start 1.5s ease-out;
+}
+
+#theory h2:nth-child(9) {
+    animation: start 1.6s ease-out;
+}
+
+#mult0 {
+    animation: start 1.7s ease-out;
+}
+
+#ex1 {
+    animation: start 1.8s ease-out;
+}
+
+#ex2 {
+    animation: start 1.9s ease-out;
+}
+
+#ex3 {
+    animation: start 2s ease-out;
+}
+
+#mult1 {
+    animation: start 2.1s ease-out;
+}
+
+#ex4 {
+    animation: start 2.2s ease-out;
+}
+
+#ex5 {
+    animation: start 2.3s ease-out;
+}
+
+#ex6 {
+    animation: start 2.4s ease-out;
+}
+
+#zad-zagolovok {
+    animation: start 2.5s ease-out;
+}
+
+#zadacha, #zadachki {
+    animation: start 1s ease-out;
+}
+
+#theory-tasks {
+    animation: start 2.6s ease-out;
 }
 
 .rightCheck {
