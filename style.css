@@ -3,8 +3,18 @@
     padding: 0;
 }
 
+/* @font-face {
+    font-family: 'font1';
+    src: url('5ka Sans Design/5KASANSDESIGN-REGULAR.8DECC07DF8894152.TTF')
+} */
+
+@font-face {
+    font-family: 'font2';
+    src: url('SSF Breakthrough/SSFBreakthrough-Regular.ttf');
+}
+
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'font2';
     background-color: #ffffff
 }
 
