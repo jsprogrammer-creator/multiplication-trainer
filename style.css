@@ -406,6 +406,10 @@ h1 {
     animation: start 2.6s ease-out;
 }
 
+#checkAnswers {
+    animation: start 1.1s ease-out;
+}
+
 .rightCheck {
     font-weight: 600;
     font-size: 24px;
@@ -444,11 +448,13 @@ h1 {
 
 @media (max-width: 768px) {
     body {
-        font-size: 12px;
+        font-size: 16px;
+        overflow-x: hidden;
+        max-width: 380px;
     }
 
     .nav-buttons {
-        padding: 5px;
+        padding: 10px;
         margin: 5px;
         gap: 35px;
     }
@@ -465,7 +471,7 @@ h1 {
     }
 
     .nav-buttons button {
-        padding: 10px 20px;
+        padding: 13px 23px;
         font-size: 12px;
     }
 
@@ -473,9 +479,7 @@ h1 {
         gap: 7px;
     }
 
-    h3 {
-        font-size: 18px;
-    }
+    
 
     .questionText {
         font-size: 20px;

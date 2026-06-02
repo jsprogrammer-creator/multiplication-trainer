@@ -149,7 +149,6 @@ function test() {
             }
         }
     })
-
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
     } 
@@ -179,8 +178,8 @@ function prorisovka() {
     }
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
-    }
-} 
+    } 
+}
 
 prorisovka()
 
