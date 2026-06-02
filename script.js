@@ -1,5 +1,5 @@
 window.onload = () => {
-    localStorage.getItem('multiplicationTrainer')
+    loadProgress()
 }
 let generatorBtn = document.querySelector('#generatorBtn')
 let practiseBtn = document.querySelector('#practiseBtn')
@@ -25,6 +25,24 @@ practiseBtn.addEventListener('click', function(event) {
     theoryBtn.classList.remove('active')
     prorisovka()
 })
+
+loadProgress = () => {
+    const saved = localStorage.getItem('multiplicationTrainer')
+    if (saved) {
+        const state = JSON.parse(saved)
+        a = state.a
+        b = state.b
+        schet = state.schet
+        counterMistakes = state.counterMistakes
+        if (b > 2) {
+            startBtn.textContent = 'Продолжить'
+        }
+        if (practiseBtn.classList.contains('active')) {
+            counter.textContent = `Примеров осталось: ${schet}`
+            test()
+        }
+    }
+}
 
 generatorBtn.addEventListener('click', function(event) {
     practiseBtn.classList.remove('active')
@@ -66,6 +84,7 @@ const saveProgress = () => {
         b,
         counterMistakes
     }
+    localStorage.setItem('multiplicationTrainer', JSON.stringify(state))
 }
 
 function test() {
@@ -147,7 +166,7 @@ function test() {
                 counterMistakes = 3
                 schet = 45
                 startBtn.textContent = 'Начать'
-                saveProrgess()
+                saveProgress()
             } else {
                 counter.textContent = `Примеров осталось: ${schet}`
                 saveProgress()
@@ -197,7 +216,7 @@ function test() {
                 test()
             }
         }
-        localStorage.setItem('multiplicationTrainer', JSON.stringify(state))
+        saveProgress()
     })
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
