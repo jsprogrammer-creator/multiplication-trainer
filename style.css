@@ -18,6 +18,10 @@ body {
     background-color: #ffffff
 }
 
+.active {
+    background-color: rgb(0, 0, 0);
+}
+
 @keyframes start {
     from {
         transform: translateY(-50px);
@@ -61,6 +65,18 @@ h1 {
     padding: 10px;
     gap: 100px;
     animation: start 0.7s ease-out forwards;
+}
+
+#rightAnswers {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+#error {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: crimson;
 }
 
 .nav-buttons button {
@@ -425,6 +441,10 @@ h1 {
     display: grid;
 }
 
+.check-btn {
+    padding: 13px 23px;
+}
+
 #theory h2, h3 {
     text-align: center;
 }
@@ -459,6 +479,11 @@ h1 {
         gap: 35px;
     }
 
+    #primer {
+        margin: 0;
+        padding: 0;
+    }
+
     .theory-row {
         gap: 5px;
         margin-bottom: 8px;
@@ -477,9 +502,13 @@ h1 {
 
     .mainBox {
         gap: 7px;
+        margin: 0;
+        padding: 0;
     }
 
-    
+    .check-btn {
+        padding: 13px 23px;
+    }
 
     .questionText {
         font-size: 20px;

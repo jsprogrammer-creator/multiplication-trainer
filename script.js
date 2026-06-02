@@ -1,3 +1,6 @@
+window.onload = () => {
+    localStorage.getItem('multiplicationTrainer')
+}
 let generatorBtn = document.querySelector('#generatorBtn')
 let practiseBtn = document.querySelector('#practiseBtn')
 let generateBtn = document.querySelector('#generate')
@@ -9,6 +12,8 @@ let primeri = document.querySelector('#primer')
 let theoryBtn = document.querySelector('#theoryBtn')
 let theory = document.querySelector('#theory')
 let theory_p = document.querySelector('#theory p')
+
+let errorCheck = document.querySelector('#error')
 
 let rightCheck = document.getElementById('rightCheck')
 
@@ -54,6 +59,14 @@ let c = 0
 let d = 2
 let e = 2
 let schet = 45
+const saveProgress = () => {
+    const state = {
+        schet,
+        a,
+        b,
+        counterMistakes
+    }
+}
 
 function test() {
     counter.style.color = '#9c8065'
@@ -89,12 +102,12 @@ function test() {
     let checkBtn = document.createElement('button')
     checkBtn.textContent = 'Проверить ответ'
     checkBtn.className = 'generate-btn'
-    checkBtn.style.padding = '10px 20px'
 
     reshenie.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             event.preventDefault()
             checkBtn.click()
+            saveProgress()
         } 
     })
     mainBox.appendChild(topRow)
@@ -105,17 +118,27 @@ function test() {
         if (+reshenie.value == a * b) {
             rightCheck.textContent = 'Правильно!'
             rightCheck.style.color = 'yellowgreen'
+
+            setTimeout(() => {
+                    rightCheck.textContent = ''
+                }, 3000); 
+
             reshenie.focus()
             schet -= 1
 
             b++
+            saveProgress()
             if (b > 10) {
                 a++
                 b = a
+                saveProgress()
             }
             if (a > 10) {
                 rightCheck.textContent = 'Вы прошли всю таблицу!'
                 rightCheck.style.color = 'cornflowerblue'
+                setTimeout(() => {
+                    rightCheck.textContent = ''
+                }, 3000); 
                 topRow.innerHTML = ''
                 counter.textContent = ''
                 mainBox.innerHTML = ''
@@ -124,30 +147,57 @@ function test() {
                 counterMistakes = 3
                 schet = 45
                 startBtn.textContent = 'Начать'
+                saveProrgess()
             } else {
                 counter.textContent = `Примеров осталось: ${schet}`
+                saveProgress()
                 test()
             }
+
         } else if (reshenie.value == '') {
             rightCheck.textContent = 'Пожалуйста, введите ответ'; rightCheck.style.color = 'yellow'
+            saveProgress()
+            setTimeout(() => {
+                rightCheck.textContent = ''
+            }, 3000); 
         } else if (+reshenie.value != a * b && reshenie.value != '') {
             counterMistakes--
+            saveProgress()
             if (counterMistakes == 2) {
                 rightCheck.textContent = 'Неверно, осталось 2 попытки'
                 rightCheck.style.color = 'crimson'
+
+                setTimeout(() => {
+                    rightCheck.textContent = ''
+                }, 3000); 
+
                 reshenie.value = ''
+                saveProgress()
             } else if (counterMistakes == 1) {
                 rightCheck.textContent = 'Неверно, последняя попытка'
                 rightCheck.style.color = 'crimson'
+
+                setTimeout(() => {
+                    rightCheck.textContent = ''
+                }, 3000); 
+
                 reshenie.value = ''
+                saveProgress()
             } else {
                 rightCheck.textContent = 'Вы ошиблись слишком много раз. Начнем заново'
+
+                setTimeout(() => {
+                    rightCheck.textContent = ''
+                }, 3000); 
+
                 rightCheck.style.color = 'crimson'
                 a = 2; b = 2; counterMistakes = 3; schet = 45
                 questionText.textContent = `${a} * ${b}`
+                saveProgress()
                 test()
             }
         }
+        localStorage.setItem('multiplicationTrainer', JSON.stringify(state))
     })
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
@@ -161,12 +211,18 @@ function prorisovka() {
         document.querySelector('.practise-mode').style.display = 'block'
         container.innerHTML = ''
         container.style.borderColor = 'white'
+        practiseBtn.style.backgroundColor = '#caa382'
+        theoryBtn.style.backgroundColor = '#e4ba98'
+        generatorBtn.style.backgroundColor = '#e4ba98'
     } else if (generatorBtn.classList.contains('active')) {
         document.querySelector('.practise-mode').style.display = 'none'
         document.querySelector('.generation').style.display = 'block'
         document.querySelector('#theory').style.display = 'none'
         primeri.innerHTML = ''
         rightCheck.textContent = ''
+        generatorBtn.style.backgroundColor = '#caa382'
+        practiseBtn.style.backgroundColor = '#e4ba98'
+        theoryBtn.style.backgroundColor = '#e4ba98'
     } else if (theoryBtn.classList.contains('active')) {
         document.querySelector('#theory').style.display = 'block'
         document.querySelector('.generation').style.display = 'none'
@@ -175,6 +231,9 @@ function prorisovka() {
         container.style.borderColor = 'white'
         primeri.innerHTML = ''
         rightCheck.textContent = ''
+        generatorBtn.style.backgroundColor = '#e4ba98'
+        practiseBtn.style.backgroundColor = '#e4ba98'
+        theoryBtn.style.backgroundColor = '#caa382'
     }
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
@@ -184,11 +243,22 @@ function prorisovka() {
 prorisovka()
 
 generateBtn.addEventListener('click', function(event) {
-    if (numInput.value == '') {alert('Выберите число от 1 до 10')} else if (numInput.value.length > 5) {
-        alert('Ошибка: слишком длинное число')
+    if (numInput.value == '') {
+        errorCheck.textContent = 'Выберите число от 1 до 10'
+        setTimeout(() => {
+        errorCheck.textContent = ''
+        }, 3000); 
+
+    } else if (numInput.value.length > 5) {
+        errorCheck.textContent = 'Ошибка: слишком длинное число'
         numInput.value = ''
+        setTimeout(() => {
+        errorCheck.textContent = ''
+        }, 3000); 
     } else {
-        generate(numInput.value) }
+        generate(numInput.value)
+        errorCheck.textContent = ''
+    }
 })
 
 let zad1_propusk = document.querySelector('#zad1-propusk')
