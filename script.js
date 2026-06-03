@@ -1,5 +1,6 @@
 window.onload = () => {
     loadProgress()
+    loadTheme()
 }
 let generatorBtn = document.querySelector('#generatorBtn')
 let practiseBtn = document.querySelector('#practiseBtn')
@@ -11,7 +12,14 @@ let container = document.querySelector('#table-output')
 let primeri = document.querySelector('#primer')
 let theoryBtn = document.querySelector('#theoryBtn')
 let theory = document.querySelector('#theory')
-let theory_p = document.querySelector('#theory p')
+let theory_p = document.querySelectorAll('#theory p')
+let generation_p = document.querySelector('.generation p')
+let title = document.querySelector('h1')
+let theoryRowInputs = theory.querySelectorAll('input')
+let practiseMode = document.querySelector('.practise-mode')
+let generate2Btn = document.querySelector('.generate-btn')
+
+let changeTheme = document.querySelector('#themeChanger')
 
 let errorCheck = document.querySelector('#error')
 
@@ -19,12 +27,88 @@ let rightCheck = document.getElementById('rightCheck')
 
 let rightAnswers = document.getElementById('rightAnswers')
 
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.remove('dark')
+        document.body.classList.add('light')
+        container.classList = document.body.classList
+        if (container.hasChildNodes()) {
+            container.style.borderColor = 'rgb(106, 125, 158)'
+            for (let element of container.querySelectorAll('div')) {
+                element.style.color = 'black'
+                if (!element.classList.contains('lastChild')) {
+                    element.style.borderBottom = '1px solid rgb(106, 125, 158)'
+                }
+            }
+        }
+        for (let input of theoryRowInputs) {
+            input.classList.add('light')
+            input.classList.remove('dark')
+        }
+
+        if (practiseMode.hasChildNodes('.mainBox')) {
+            if (rightCheck.textContent == 'Пожалуйста, введите ответ') {
+                rightCheck.style.color = 'rgb(85, 152, 194)'
+            }
+        }
+
+        counter.classList = container.classList
+        title.classList = document.body.classList
+        generation_p.classList = document.body.classList
+        generateBtn.classList = document.body.classList
+    } else if (theme === 'dark') {
+        document.body.classList.remove('light')
+        document.body.classList.add('dark')
+        container.classList = document.body.classList
+        if (container.hasChildNodes()) {
+            for (let element of container.querySelectorAll('div')) {
+                element.style.color = 'aliceblue'
+                if (!element.classList.contains('lastChild')) {
+                    element.style.borderBottom = '1px solid aliceblue'
+                }
+                container.style.borderColor = 'aliceblue'
+            } 
+        }
+        for (let input of theoryRowInputs) {
+            input.classList.add('dark')
+            input.classList.remove('light')
+        }
+
+        if (practiseMode.hasChildNodes('.mainBox')) {
+            if (rightCheck.textContent == 'Пожалуйста, введите ответ') {
+                rightCheck.style.color = 'aliceblue'
+            }
+        }
+
+        counter.classList = container.classList
+        title.classList = document.body.classList
+        generation_p.classList = document.body.classList
+        generateBtn.classList = document.body.classList
+    }
+    localStorage.setItem('currentTheme', theme)
+}
+
+changeTheme.addEventListener('click', function(event) {
+    let newTheme = document.body.classList.contains('dark') ? 'light' : 'dark'
+    applyTheme(newTheme)
+})
+
+function loadTheme () {
+    let savedTheme = localStorage.getItem('currentTheme')
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+        applyTheme(savedTheme)
+    } else {
+        applyTheme('light')
+    }
+}
+
 practiseBtn.addEventListener('click', function(event) {
     practiseBtn.classList.add('active')
     generatorBtn.classList.remove('active')
     theoryBtn.classList.remove('active')
     prorisovka()
 })
+
 
 loadProgress = () => {
     const saved = localStorage.getItem('multiplicationTrainer')
@@ -39,6 +123,7 @@ loadProgress = () => {
         }
         if (practiseBtn.classList.contains('active')) {
             counter.textContent = `Примеров осталось: ${schet}`
+            counter.style.color = document.body.style.backgroundColor
             test()
         }
     }
@@ -62,9 +147,16 @@ function generate(number) {
     container.innerHTML = ''
     for (let i = 1; i <= 10; i++) {
         let table = document.createElement('div')
+        document.body.classList.contains('dark') ? table.classList.add('dark') : table.classList.remove('dark')
+        document.body.classList.contains('light') ? table.classList.add('light') : table.classList.remove('light')
         table.textContent = `${number} x ${i} = ${i * number}`
+        if (i == 10) {
+            table.classList.add('lastChild')
+        }
+        table.classList.add('table')
         container.appendChild(table)
-        container.style.border = '2px solid #776363'
+        document.body.classList.contains('dark') ? container.style.border = '2px solid #ffffff' : container.style.border = '2px solid #6a7d9e'
+        document.body.classList.contains('light') ? container.style.border = '2px solid #6a7d9e' : container.style.border = '2px solid #ffffff'
         container.style.padding = '10px'
         container.style.animation = 'start 0.9s ease-out forwards;'
     }
@@ -88,7 +180,6 @@ const saveProgress = () => {
 }
 
 function test() {
-    counter.style.color = '#9c8065'
     counter.textContent = `Примеров осталось: ${schet}`
     primeri.innerHTML = ''
     let mainBox = document.createElement('div')
@@ -107,6 +198,7 @@ function test() {
     let questionText = document.createElement('span')
     questionText.classList.add('questionText')
     questionText.textContent = `${a} * ${b}`
+
 
     let reshenie = document.createElement('input')
     reshenie.type = 'number'
@@ -136,11 +228,7 @@ function test() {
     checkBtn.addEventListener('click', function(event) {
         if (+reshenie.value == a * b) {
             rightCheck.textContent = 'Правильно!'
-            rightCheck.style.color = 'yellowgreen'
-
-            setTimeout(() => {
-                    rightCheck.textContent = ''
-                }, 3000); 
+            rightCheck.style.color = `rgb(87, 224, 176)`
 
             reshenie.focus()
             schet -= 1
@@ -155,9 +243,7 @@ function test() {
             if (a > 10) {
                 rightCheck.textContent = 'Вы прошли всю таблицу!'
                 rightCheck.style.color = 'cornflowerblue'
-                setTimeout(() => {
-                    rightCheck.textContent = ''
-                }, 3000); 
+
                 topRow.innerHTML = ''
                 counter.textContent = ''
                 mainBox.innerHTML = ''
@@ -174,42 +260,29 @@ function test() {
             }
 
         } else if (reshenie.value == '') {
-            rightCheck.textContent = 'Пожалуйста, введите ответ'; rightCheck.style.color = 'yellow'
+            rightCheck.textContent = 'Пожалуйста, введите ответ'; 
+            rightCheck.style.color = 'rgb(85, 152, 194)'
             saveProgress()
-            setTimeout(() => {
-                rightCheck.textContent = ''
-            }, 3000); 
+
         } else if (+reshenie.value != a * b && reshenie.value != '') {
             counterMistakes--
             saveProgress()
             if (counterMistakes == 2) {
                 rightCheck.textContent = 'Неверно, осталось 2 попытки'
-                rightCheck.style.color = 'crimson'
-
-                setTimeout(() => {
-                    rightCheck.textContent = ''
-                }, 3000); 
+                rightCheck.style.color = `rgb(233, 108, 108)`
 
                 reshenie.value = ''
                 saveProgress()
             } else if (counterMistakes == 1) {
                 rightCheck.textContent = 'Неверно, последняя попытка'
-                rightCheck.style.color = 'crimson'
-
-                setTimeout(() => {
-                    rightCheck.textContent = ''
-                }, 3000); 
+                rightCheck.style.color = `rgb(233, 108, 108)`
 
                 reshenie.value = ''
                 saveProgress()
             } else {
                 rightCheck.textContent = 'Вы ошиблись слишком много раз. Начнем заново'
 
-                setTimeout(() => {
-                    rightCheck.textContent = ''
-                }, 3000); 
-
-                rightCheck.style.color = 'crimson'
+                rightCheck.style.color = `rgb(233, 108, 108)`
                 a = 2; b = 2; counterMistakes = 3; schet = 45
                 questionText.textContent = `${a} * ${b}`
                 saveProgress()
@@ -229,30 +302,24 @@ function prorisovka() {
         document.querySelector('#theory').style.display = 'none'
         document.querySelector('.practise-mode').style.display = 'block'
         container.innerHTML = ''
-        container.style.borderColor = 'white'
-        practiseBtn.style.backgroundColor = '#caa382'
-        theoryBtn.style.backgroundColor = '#e4ba98'
-        generatorBtn.style.backgroundColor = '#e4ba98'
+        container.style.borderColor = document.body.style.backgroundColor
+        counter.style.color = document.body.style.backgroundColor
     } else if (generatorBtn.classList.contains('active')) {
         document.querySelector('.practise-mode').style.display = 'none'
         document.querySelector('.generation').style.display = 'block'
         document.querySelector('#theory').style.display = 'none'
         primeri.innerHTML = ''
         rightCheck.textContent = ''
-        generatorBtn.style.backgroundColor = '#caa382'
-        practiseBtn.style.backgroundColor = '#e4ba98'
-        theoryBtn.style.backgroundColor = '#e4ba98'
+        startBtn.classList.remove('started')
     } else if (theoryBtn.classList.contains('active')) {
         document.querySelector('#theory').style.display = 'block'
         document.querySelector('.generation').style.display = 'none'
         document.querySelector('.practise-mode').style.display = 'none'
         container.innerHTML = ''
-        container.style.borderColor = 'white'
+        container.style.borderColor = document.body.style.backgroundColor
         primeri.innerHTML = ''
         rightCheck.textContent = ''
-        generatorBtn.style.backgroundColor = '#e4ba98'
-        practiseBtn.style.backgroundColor = '#e4ba98'
-        theoryBtn.style.backgroundColor = '#caa382'
+        startBtn.classList.remove('started')
     }
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
         startBtn.textContent = 'Продолжить'
@@ -263,17 +330,11 @@ prorisovka()
 
 generateBtn.addEventListener('click', function(event) {
     if (numInput.value == '') {
-        errorCheck.textContent = 'Выберите число от 1 до 10'
-        setTimeout(() => {
-        errorCheck.textContent = ''
-        }, 3000); 
+        errorCheck.textContent = 'Выберите число для генерации таблицы умножения (не больше 5 знаков)'
 
     } else if (numInput.value.length > 5) {
         errorCheck.textContent = 'Ошибка: слишком длинное число'
         numInput.value = ''
-        setTimeout(() => {
-        errorCheck.textContent = ''
-        }, 3000); 
     } else {
         generate(numInput.value)
         errorCheck.textContent = ''
@@ -359,5 +420,6 @@ checkAnswersBtn.addEventListener('click', function(event) {
 })
 
 startBtn.addEventListener('click', function(event) {
+    startBtn.classList.add('started')
     test()
 })

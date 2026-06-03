@@ -13,13 +13,49 @@
     src: url('SSF Breakthrough/SSFBreakthrough-Regular.ttf');
 }
 
-body {
-    font-family: 'font2';
-    background-color: #ffffff
+#themeChanger {
+    font-size: 25px;
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    display: flex;
+    animation: start 0.4s ease-out forwards;
+    justify-content: space-around;
 }
 
-.active {
-    background-color: rgb(0, 0, 0);
+
+
+#div h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#themeChanger:hover {
+    cursor: pointer;
+}
+
+body {
+    font-family: 'font2';
+    background-color: #ffffff;
+    overflow-y: scroll;
+}
+
+#theory.dark {
+    color: #ffffff;
+}
+
+body.light {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark {
+    background-color: #3e464e;
+    color: #ffffff;
+}
+
+.nav-buttons button.active {
+    background-color: #5e93b4;
 }
 
 @keyframes start {
@@ -53,8 +89,15 @@ body {
 
 h1 {
     text-align: center;
-    color: #c4945c;
     animation: start 0.5s ease-out forwards;
+}
+
+h1.light {
+    color: rgb(75, 107, 135);
+}
+
+h1.dark {
+    color: #ffffff;
 }
 
 .nav-buttons {
@@ -76,22 +119,25 @@ h1 {
     text-align: center;
     font-size: 24px;
     font-weight: 500;
-    color: crimson;
+    color: rgb(239, 73, 106);
 }
 
 .nav-buttons button {
     padding: 15px 30px;
     cursor: pointer;
-    background-color: #e4ba98;
+    background-color: #4a6b7e;
     color: aliceblue;
     font-size: 15px;
-    border: 8px;
+    border: 2px solid aliceblue;
     border-radius: 8px;
 }
 
+#generator-btn:hover {
+    background-color: #6c8fa9;
+}
+
 .nav-buttons button:hover {
-    background-color: #d3ad8d;
-    animation: scale 0.4s ease-out forwards;
+    background-color: #6c8fa9;
 }
 
 .practise-mode {
@@ -101,13 +147,23 @@ h1 {
 .practise-mode p {
     justify-content: center;
     align-items: center;
-
+    font-size: 20px;
+    font-weight: 500;
+    animation: start 0.9s ease-out forwards;
 }
 
 .practise-mode h3 {
     justify-content: center;
     align-items: center;
+    animation: start 1.2s ease-out forwards;
+}
 
+.practise-mode h3.light {
+    color: #3e464e;
+}
+
+.practise-mode h3.dark {
+    color: #ffffff;
 }
 
 .practise-mode:nth-child(1) {
@@ -117,7 +173,7 @@ h1 {
 .practise-mode button {
     padding: 15px 30px;
     border-radius: 8px;
-    background-color: #e4ba98;
+    background-color: #4a6b7e;
     color: #ffffff;
     font-size: 13px;
     border: 2px solid #ffffff;
@@ -126,20 +182,7 @@ h1 {
 }
 
 .practise-mode button:hover {
-    background-color: #d3ad8d;
-}
-
-.practise-mode p {
-    font-size: 20px;
-    color: #9c8065;
-    animation: start 0.9s ease-out forwards;
-}
-
-.practise-mode h3 {
-    font-size: 20px;
-    color: #ffffff;
-    font-weight: 500;
-    animation: start 1.3s ease-out forwards;
+    background-color: #6c8fa9;
 }
 
 
@@ -149,14 +192,20 @@ h1 {
 
 .generation p {
     font-size: 20px;
-    color: #9c8065;
     animation: start 0.9s ease-out forwards;
+}
+
+.generation p.dark {
+    color: #ffffff;
+}
+
+.generation p.light {
+    color: #3e464e;
 }
 
 .generation button {
     border-radius: 8px;
     padding: 15px 30px;
-    background-color: #e4ba98;
     color: #ffffff;
     font-size: 13px;
     border: 2px solid #ffffff;
@@ -165,25 +214,61 @@ h1 {
 }
 
 .generation button:hover {
-    background-color: #d3ad8d;
+    background-color: #6c8fa9;
+}
+
+.generation button.light {
+    background-color: #4a6b7e;
+    color: aliceblue;
+}
+
+.generation button.dark {
+    color: aliceblue;
+    background-color: #4a6b7e;
+}
+
+.cgenerirovat {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
 }
 
 .generation input {
     font-size: 20px;
-    border-color: #e4ba98 ;
-    margin-right: 20px;
     padding: 10px 20px;
     animation: start 1.1s ease-out forwards;
 }
 
+.generation input.light {
+    border-color: #4a6b7e;
+}
+
+.generation input .dark {
+    border-color: aliceblue ;
+}
+
 #table-output div {
     padding: 5px 10px;
-    border-bottom: 1px solid #8a7a6a;
     font-family: monospace;
     text-align: center;
     font-size: 1.2rem;
-    color: #d3ad8d;
     animation: start 0.9s ease-out forwards;
+}
+
+#table-output div.dark {
+    border-bottom: 1px solid aliceblue;
+}
+
+#table-output div.light {
+    border-bottom: 1px solid #4a6b7e;
+}
+
+.table .dark {
+    border-bottom: 1px solid #ffffff;
+}
+
+.table .light {
+    border-bottom: 1px solid #d3ad8d;
 }
 
 #table-output {
@@ -193,7 +278,6 @@ h1 {
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    background-color: white;
     margin-top: 20px;
     margin: 20px auto;
     width: fit-content;
@@ -270,9 +354,16 @@ h1 {
     animation: start 0.9s ease-out forwards;
 }
 
+#table-output:empty.light {
+    border-color: #ffffff;
+}
+
+#table-output:empty.dark {
+    border-color: #3e464e;
+}
+
 #primer div {
     text-align: center;
-    color: #d3ad8d;
     font-size: 20px;
     margin: 20px;
     animation: start 0.9s ease-out forwards;
@@ -280,7 +371,7 @@ h1 {
 
 #primer input {
     margin: 20px;
-    color: #9c8065;
+    color: #6c8fa9;
     font-size: 15px;
     
 }
@@ -292,17 +383,12 @@ h1 {
 #primer button {
     border-radius: 8px;
     padding: 15px 30px;
-    background-color: #e4ba98;
-    color: #ffffff;
     font-size: 13px;
     border: 2px solid #ffffff;
     cursor: pointer;
     margin: 20px;
-    
-}
-
-#primer button:hover {
-    background-color: #d3ad8d;
+    background-color: #4a6b7e;
+    color: aliceblue;
 }
 
 #primer {
@@ -310,7 +396,6 @@ h1 {
     margin: 20px;
     padding: 20px;
     text-align: center;
-    color: #d3ad8d;
     font-size: 20px;
     margin: 20px;
 }
@@ -327,103 +412,113 @@ h1 {
 .theory-row input {
     width: 60px;
     padding: 5px;
-    border: 1px solid #c4945c;
+    border: 1px solid;
     border-radius: 4px;
     text-align: center;
 }
 
+#theory-row input.light {
+    border-color: #4a6b7e;
+}
+
+#theory-row input.dark {
+    border-color: aliceblue;
+}
+
+#theory p.light {
+    color: #79c7df;
+}
+
 #theory {
     text-align: center;
-    color: #8a7a6a;
-    
 }
 
 #theory input {
-    animation: start 0.9s ease-out;
+    animation: start 0.9s ease-out forwards;
 }
 
 #theory p:nth-child(1) {
-    animation: start 0.8s ease-out;
+    animation: start 0.8s ease-out forwards;
 }
 
 #theory p:nth-child(2) {
-    animation: start 0.9s ease-out;
+    animation: start 0.9s ease-out forwards;
 }
 
 #theory p:nth-child(3) {
-    animation: start 1s ease-out;
+    animation: start 1s ease-out forwards;
 }
 
 #theory p:nth-child(4) {
-    animation: start 1.1s ease-out;
+    animation: start 1.1s ease-out forwards;
 }
 
 #theory p:nth-child(5) {
-    animation: start 1.2s ease-out;
+    animation: start 1.2s ease-out forwards;
 }
 
 #theory p:nth-child(6) {
-    animation: start 1.3s ease-out;
+    animation: start 1.3s ease-out forwards;
 }
 
 #theory p:nth-child(7) {
-    animation: start 1.4s ease-out;
+    animation: start 1.4s ease-out forwards;
 }
 
 #theory p:nth-child(8) {
-    animation: start 1.5s ease-out;
+    animation: start 1.5s ease-out forwards;
 }
 
 #theory h2:nth-child(9) {
-    animation: start 1.6s ease-out;
+    animation: start 1.6s ease-out forwards;
 }
 
 #mult0 {
-    animation: start 1.7s ease-out;
+    animation: start 1.7s ease-out forwards;
 }
 
 #ex1 {
-    animation: start 1.8s ease-out;
+    animation: start 1.8s ease-out forwards;
 }
 
 #ex2 {
-    animation: start 1.9s ease-out;
+    animation: start 1.9s ease-out forwards;
 }
 
 #ex3 {
-    animation: start 2s ease-out;
+    animation: start 2s ease-out forwards;
 }
 
 #mult1 {
-    animation: start 2.1s ease-out;
+    animation: start 2.1s ease-out forwards;
 }
 
 #ex4 {
-    animation: start 2.2s ease-out;
+    animation: start 2.2s ease-out forwards;
 }
 
 #ex5 {
-    animation: start 2.3s ease-out;
+    animation: start 2.3s ease-out forwards;
 }
 
 #ex6 {
-    animation: start 2.4s ease-out;
+    animation: start 2.4s ease-out forwards;
 }
 
 #zad-zagolovok {
-    animation: start 2.5s ease-out;
+    animation: start 2.5s ease-out forwards;
 }
 
 #zadacha, #zadachki {
-    animation: start 1s ease-out;
+    animation: start 1s ease-out forwards;
 }
 
 #theory-tasks {
-    animation: start 2.6s ease-out;
+    animation: start 2.6s ease-out forwards;
 }
 
 #checkAnswers {
-    animation: start 1.1s ease-out;
+    animation: start 1.1s ease-out forwards;
 }
 
 .rightCheck {
@@ -449,10 +544,24 @@ h1 {
     text-align: center;
 }
 
+.generate-btn {
+    background-color: #3e464e;
+    color: aliceblue;
+}
+
+#primer .mainBox .generate-btn:hover {
+    background-color: #6c8fa9;
+}
+
+#generate:hover {
+    background-color: #6c8fa9;
+}
+
 #theory button {
     padding: 15px 30px;
     cursor: pointer;
-    background-color: #e4ba98;
+    background-color: #4a6b7e;
+    border: 1px solid aliceblue;
     color: aliceblue;
     font-size: 15px;
     border: 8px;
@@ -463,7 +572,7 @@ h1 {
 }
 
 #theory button:hover {
-    background-color: #d3ad8d;
+    background-color: #6c8fa9;
 }
 
 @media (max-width: 768px) {
@@ -476,7 +585,7 @@ h1 {
     .nav-buttons {
         padding: 10px;
         margin: 5px;
-        gap: 35px;
+        gap: 30px;
     }
 
     #primer {

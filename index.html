@@ -6,8 +6,11 @@
     <title>Multiplication</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1 id="title">Умножение</h1>
+<body class="light">
+    <div id="div">
+        <p id="themeChanger" class="light">☪︎</p>
+        <h1 id="title">Умножение</h1>
+    </div>
     <div class="nav-buttons">
         <button id="generatorBtn">Генератор</button>
         <button id="theoryBtn" class="active">Теория</button>
@@ -16,14 +19,16 @@
 
     <div class="generation">
         <p>Выберите число для генерации таблицы умножения: </p> 
-        <input type="number" id="generator_input" min="1" max="10" placeholder="..." >
-        <button id="generate">Сгенерировать</button>
+        <div class="cgenerirovat">
+            <input type="number" id="generator_input" min="1" max="10" placeholder="..." >
+            <button id="generate">Сгенерировать</button>
+        </div>
         <p id="error"></p>
     </div>
 
     <div id="theory">
-        <p id="opredelenie" >Умножение — это способ быстро посчитать, сколько получится, если одно число взять несколько раз</p>
-        <p id="nazvaniya" > Результат умножения называют произведением, а числа, которые умножают, — множителями</p>
+        <p id="opredelenie">Умножение — это способ быстро посчитать, сколько получится, если одно число взять несколько раз</p>
+        <p id="nazvaniya"> Результат умножения называют произведением, а числа, которые умножают, — множителями</p>
         <p class="multiplicationExample1">2 × 3 = 2 + 2 + 2 = 3 + 3 = 6 </p>
         <p class="multiplicationExample1">2 и 3 - множители, 6 - произведение</p>
         <p class="multiplicationExample2">5 × 4 = 5 + 5 + 5 + 5 = 4 + 4 + 4 + 4 + 4 = 20</p>
@@ -42,7 +47,7 @@
         <p id="ex6">0 × 1 = 0</p>
         <h2 id="zad-zagolovok">Задачи</h2>
         <div class="theory-tasks">
-            <h3 id="zadacha">Заполните пропуски:</h3>
+            <h3 id="zadacha">Заполните пропуски</h3>
             <div class="theory-row">
                 <p class="zad1">2 × </p> 
                 <input type="number" placeholder="..." id="zad1-propusk" min="0"> 
@@ -78,7 +83,7 @@
     <div class="practise-mode">
         <p #proverte>Проверьте свои знания и решите все примеры</p>
         <button id="start">Начать</button>
-        <h3 id='counter'>Примеров осталось: </h3>
+        <h3 id='counter'></h3>
         <h2 id="rightCheck"></h2>
     </div>
 
