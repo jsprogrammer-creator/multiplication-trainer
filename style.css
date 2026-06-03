@@ -417,16 +417,16 @@ h1.dark {
     text-align: center;
 }
 
-#theory-row input.light {
+.theory-row input.light {
     border-color: #4a6b7e;
 }
 
-#theory-row input.dark {
+.theory-row input.dark {
     border-color: aliceblue;
 }
 
 #theory p.light {
-    color: #79c7df;
+    color: #4e7683;
 }
 
 #theory {
@@ -557,6 +557,10 @@ h1.dark {
     background-color: #6c8fa9;
 }
 
+#checkAnswers {
+    border: 1px solid aliceblue;
+}
+
 #theory button {
     padding: 15px 30px;
     cursor: pointer;
@@ -564,7 +568,6 @@ h1.dark {
     border: 1px solid aliceblue;
     color: aliceblue;
     font-size: 15px;
-    border: 8px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
