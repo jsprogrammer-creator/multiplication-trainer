@@ -304,6 +304,7 @@ function prorisovka() {
         container.innerHTML = ''
         container.style.borderColor = document.body.style.backgroundColor
         counter.style.color = document.body.style.backgroundColor
+        errorCheck.textContent = ''
     } else if (generatorBtn.classList.contains('active')) {
         document.querySelector('.practise-mode').style.display = 'none'
         document.querySelector('.generation').style.display = 'block'
@@ -319,6 +320,7 @@ function prorisovka() {
         container.style.borderColor = document.body.style.backgroundColor
         primeri.innerHTML = ''
         rightCheck.textContent = ''
+        errorCheck.textContent = ''
         startBtn.classList.remove('started')
     }
     if (b > 2 && !practiseBtn.classList.contains('active') && a <= 10 && b <= 10) {
