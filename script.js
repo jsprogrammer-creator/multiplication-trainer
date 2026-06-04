@@ -49,9 +49,10 @@ function applyTheme(theme) {
         if (practiseMode.hasChildNodes('.mainBox')) {
             if (rightCheck.textContent == 'Пожалуйста, введите ответ') {
                 rightCheck.style.color = 'rgb(85, 152, 194)'
+            } else if (rightCheck.textContent == 'Вы прошли всю таблицу!') {
+                rightCheck.style.color = 'rgb(85, 152, 194)'
             }
         }
-
         counter.classList = container.classList
         title.classList = document.body.classList
         generation_p.classList = document.body.classList
@@ -76,6 +77,8 @@ function applyTheme(theme) {
 
         if (practiseMode.hasChildNodes('.mainBox')) {
             if (rightCheck.textContent == 'Пожалуйста, введите ответ') {
+                rightCheck.style.color = 'aliceblue'
+            } else if (rightCheck.textContent == 'Вы прошли всю таблицу!') {
                 rightCheck.style.color = 'aliceblue'
             }
         }
@@ -241,8 +244,8 @@ function test() {
                 saveProgress()
             }
             if (a > 10) {
+                document.body.classList.contains('dark') ? rightCheck.style.color = 'aliceblue' : rightCheck.style.color = '#5e93b4'
                 rightCheck.textContent = 'Вы прошли всю таблицу!'
-                rightCheck.style.color = 'cornflowerblue'
 
                 topRow.innerHTML = ''
                 counter.textContent = ''
@@ -261,7 +264,7 @@ function test() {
 
         } else if (reshenie.value == '') {
             rightCheck.textContent = 'Пожалуйста, введите ответ'; 
-            rightCheck.style.color = 'rgb(85, 152, 194)'
+            document.body.classList.contains('light') ? rightCheck.style.color = '#5598c2' : rightCheck.style.color = 'aliceblue'
             saveProgress()
 
         } else if (+reshenie.value != a * b && reshenie.value != '') {
