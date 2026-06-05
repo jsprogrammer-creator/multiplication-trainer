@@ -2,30 +2,28 @@ window.onload = () => {
     loadProgress()
     loadTheme()
 }
-let generatorBtn = document.querySelector('#generatorBtn')
-let practiseBtn = document.querySelector('#practiseBtn')
-let generateBtn = document.querySelector('#generate')
-let startBtn = document.querySelector('#start')
-let counter = document.querySelector('#counter')
-let numInput = document.querySelector('input')
-let container = document.querySelector('#table-output')
-let primeri = document.querySelector('#primer')
-let theoryBtn = document.querySelector('#theoryBtn')
-let theory = document.querySelector('#theory')
-let theory_p = document.querySelectorAll('#theory p')
-let generation_p = document.querySelector('.generation p')
-let title = document.querySelector('h1')
-let theoryRowInputs = theory.querySelectorAll('input')
-let practiseMode = document.querySelector('.practise-mode')
-let generate2Btn = document.querySelector('.generate-btn')
-
-let changeTheme = document.querySelector('#themeChanger')
-
-let errorCheck = document.querySelector('#error')
-
-let rightCheck = document.getElementById('rightCheck')
-
-let rightAnswers = document.getElementById('rightAnswers')
+const generatorBtn = document.querySelector('#generatorBtn')
+const practiseBtn = document.querySelector('#practiseBtn')
+const generateBtn = document.querySelector('#generate')
+const startBtn = document.querySelector('#start')
+const counter = document.querySelector('#counter')
+const numInput = document.querySelector('input')
+const container = document.querySelector('#table-output')
+const primeri = document.querySelector('#primer')
+const theoryBtn = document.querySelector('#theoryBtn')
+const theory = document.querySelector('#theory')
+const theory_p = document.querySelectorAll('#theory p')
+const theory_h2 = theory.querySelector('h2')
+const theory_h3 = theory.querySelector('h3')
+const generation_p = document.querySelector('.generation p')
+const title = document.querySelector('h1')
+const theoryRowInputs = theory.querySelectorAll('input')
+const practiseMode = document.querySelector('.practise-mode')
+const generate2Btn = document.querySelector('.generate-btn')
+const changeTheme = document.querySelector('#themeChanger')
+const errorCheck = document.querySelector('#error')
+const rightCheck = document.getElementById('rightCheck')
+const rightAnswers = document.getElementById('rightAnswers')
 
 function applyTheme(theme) {
     if (theme === 'light') {
@@ -53,9 +51,13 @@ function applyTheme(theme) {
                 rightCheck.style.color = 'rgb(85, 152, 194)'
             }
         }
-        counter.classList = container.classList
+        counter.classList = document.body.classList
         title.classList = document.body.classList
         generation_p.classList = document.body.classList
+        generation_p.classList = document.body.classList
+        for (let p of theory_p) {
+            p.classList = document.body.classList
+        }
         generateBtn.classList = document.body.classList
     } else if (theme === 'dark') {
         document.body.classList.remove('light')
@@ -85,6 +87,9 @@ function applyTheme(theme) {
 
         counter.classList = container.classList
         title.classList = document.body.classList
+        for (let p of theory_p) {
+            p.classList = document.body.classList
+        }
         generation_p.classList = document.body.classList
         generateBtn.classList = document.body.classList
     }
@@ -92,7 +97,7 @@ function applyTheme(theme) {
 }
 
 changeTheme.addEventListener('click', function(event) {
-    let newTheme = document.body.classList.contains('dark') ? 'light' : 'dark'
+    const newTheme = document.body.classList.contains('dark') ? 'light' : 'dark'
     applyTheme(newTheme)
 })
 
@@ -168,9 +173,6 @@ function generate(number) {
 let a = 2
 let b = 2
 let counterMistakes = 3
-let c = 0
-let d = 2
-let e = 2
 let schet = 45
 const saveProgress = () => {
     const state = {
@@ -240,7 +242,7 @@ function test() {
             saveProgress()
             if (b > 10) {
                 a++
-                b = a
+                b = a // Логика избегания повторов
                 saveProgress()
             }
             if (a > 10) {
