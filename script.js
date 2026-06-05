@@ -109,7 +109,7 @@ practiseBtn.addEventListener('click', function(event) {
     practiseBtn.classList.add('active')
     generatorBtn.classList.remove('active')
     theoryBtn.classList.remove('active')
-    prorisovka()
+    rerender()
 })
 
 
@@ -136,14 +136,14 @@ generatorBtn.addEventListener('click', function(event) {
     practiseBtn.classList.remove('active')
     theoryBtn.classList.remove('active')
     generatorBtn.classList.add('active')
-    prorisovka()
+    rerender()
 })
 
 theoryBtn.addEventListener('click', function(event) {
     practiseBtn.classList.remove('active')
     theoryBtn.classList.add('active')
     generatorBtn.classList.remove('active')
-    prorisovka()
+    rerender()
 })
 
 function generate(number) {
@@ -299,7 +299,7 @@ function test() {
     } 
 }
 
-function prorisovka() {
+function rerender() {
     if (practiseBtn.classList.contains('active')) {
         document.querySelector('.generation').style.display = 'none'
         document.querySelector('#theory').style.display = 'none'
@@ -333,7 +333,7 @@ function prorisovka() {
     } 
 }
 
-prorisovka()
+rerender()
 
 generateBtn.addEventListener('click', function(event) {
     if (numInput.value == '') {
@@ -362,7 +362,7 @@ let theoryTasks = document.querySelector('.theory-tasks')
 let mistakeCounter = 0
 
 theoryTasks.addEventListener('input', function(event) {
-    event.target.style.border = '1px solid #c4945c'
+    event.target.style.border = '1px solid rgb(85, 152, 184)'
 })
 
 function zadachki() {
